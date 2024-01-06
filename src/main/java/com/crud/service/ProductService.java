@@ -13,13 +13,22 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public void saveProduct(){
-        productRepository.save(new Product());
+    public void saveProduct(Product product){
+        productRepository.save(product);
     }
 
+    public void saveAllProducts(List<Product> productList){
+        productRepository.saveAll(productList);
+    }
+
+    public Product getProductById(int id){
+       return productRepository.findById(id).orElse(null);
+    }
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
 
-
+    public Product getProductByName(String name){
+        return productRepository.findProductByName(name);
+    }
 }
