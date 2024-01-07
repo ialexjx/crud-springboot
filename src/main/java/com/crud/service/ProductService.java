@@ -28,7 +28,19 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product getProductByName(String name){
+    public List<Product> getProductByName(String name){
         return productRepository.findProductByName(name);
+    }
+//
+//    public void deleteProductById(int id){
+//        productRepository.deleteProductById(id);
+//    }
+
+    public Product updateProduct(Product product){
+         Product existingProduct = productRepository.findById(product.getId()).orElse(null);
+         existingProduct.setProductName(product.getProductName());
+         existingProduct.setPrice(product.getPrice());
+         existingProduct.setQuantity(product.getQuantity());
+         return productRepository.save(existingProduct);
     }
 }
