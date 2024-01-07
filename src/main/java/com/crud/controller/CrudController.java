@@ -40,8 +40,8 @@ public class CrudController {
     }
 
     @GetMapping("/getProductByName")
-    public List<Product> getProductByName(@RequestParam String name){
-        return productService.getProductByName(name);
+    public List<Product> getProductByName(@RequestParam String productName){
+        return productService.getProductByName(productName);
     }
 
     @PutMapping("/updateProduct")
@@ -49,8 +49,8 @@ public class CrudController {
         return productService.updateProduct(product);
     }
 
-//    @DeleteMapping("/deleteProduct/{id}")
-//    public void deleteProduct(@PathVariable int id){
-//        productService.deleteProductById(id);
-//    }
+    @DeleteMapping("/deleteProduct/{id}")
+    public void deleteProduct(@PathVariable int id){
+        productService.deleteProduct(id);
+    }
 }

@@ -28,13 +28,9 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<Product> getProductByName(String name){
-        return productRepository.findProductByName(name);
+    public List<Product> getProductByName(String productName){
+        return productRepository.findProductByName(productName);
     }
-//
-//    public void deleteProductById(int id){
-//        productRepository.deleteProductById(id);
-//    }
 
     public Product updateProduct(Product product){
          Product existingProduct = productRepository.findById(product.getId()).orElse(null);
@@ -42,5 +38,10 @@ public class ProductService {
          existingProduct.setPrice(product.getPrice());
          existingProduct.setQuantity(product.getQuantity());
          return productRepository.save(existingProduct);
+    }
+
+    public String deleteProduct(int id){
+        productRepository.deleteById(id);
+        return "Deleted successfully";
     }
 }
